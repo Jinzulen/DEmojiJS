@@ -65,6 +65,16 @@ DEmojiJS.randomEmoji().then(Emoji => {
 }).catch(console.error);
 ```
 
+- Fetching all of the available emojis
+> If the data had been cached, then it will pull from cache, if not then it will make an API request, cache then pull from cache, pretty straightforward me thinks, neh?
+```js
+DEmojiJS.allEmoji().then(Emotes => {
+      console.log(Emotes);
+
+      // Implement your own logic here to deal with the data as you wish.
+}).catch(console.error);
+```
+
 - Fetching an emoji by ID
 ```js
 DEmojiJS.emojiByID(5054).then(Emoji => {
