@@ -95,6 +95,31 @@ function fetchAPI(Path, Callback)
       } catch (E) { throw E; };
 };
 
+Methods.allEmoji = function allEmoji (Callback)
+{
+      return new Promise((Resolve, Reject) => {
+            fetchAPI('https://discordemoji.com/api/', (Error, Result) => {
+                  if(Error)
+                  {
+                        if (typeof Callback === 'function')
+                        {
+                              Callback(Error);
+                        };
+
+                        Reject(Error);
+                        return;
+                  };
+
+                  if (typeof Callback === 'function')
+                  {
+                        Callback(null, Result[0]);
+                  };
+
+                  Resolve(JSON.parse(Result));
+            });
+      });
+};
+
 Methods.randomEmoji = function randomEmoji (Callback)
 {
       return new Promise((Resolve, Reject) => {
