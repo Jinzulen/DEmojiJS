@@ -1,7 +1,7 @@
 DEmojiJS is a lightweight, simple NodeJS wrapper around the DiscordEmoji API.
 
 You can quickly and easily install the library using NPM, via the following command: `npm i demojijs`. - Alternatively, you can just download the ZIP from here and require it in your project.
-[![https://nodei.co/npm/demojijs.png?downloads=true&downloadRank=true&stars=true](https://nodei.co/npm/demojijs?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/demojijs)
+[![https://nodei.co/npm/demojijs.png](https://nodei.co/npm/demojijs.png)](https://www.npmjs.com/package/demojijs)
 [![Build Status](https://travis-ci.org/Jinzulen/DEmojiJS.png?branch=master)](https://travis-ci.org/Jinzulen/DEmojiJS)
 
 ## Features
