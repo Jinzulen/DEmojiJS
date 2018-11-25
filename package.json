@@ -1,6 +1,6 @@
 {
   "name": "demojijs",
-  "version": "1.0.5",
+  "version": "1.0.9",
   "description": "DEmojiJS is a lightweight, simple NodeJS wrapper around the DiscordEmoji API.",
   "main": "index.js",
   "scripts": {
