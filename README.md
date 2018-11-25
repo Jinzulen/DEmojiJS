@@ -4,7 +4,6 @@ You can quickly and easily install the library using NPM, via the following comm
 
 
 [![https://nodei.co/npm/demojijs.png](https://nodei.co/npm/demojijs.png)](https://www.npmjs.com/package/demojijs)
-[![Build Status](https://travis-ci.org/Jinzulen/DEmojiJS.png?branch=master)](https://travis-ci.org/Jinzulen/DEmojiJS)
 
 ## Features
 - DiscordEmoji API Features:
