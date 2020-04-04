@@ -13,19 +13,15 @@ module.exports = new class EmojiCache
     constructor: () ->
         this.Storage = new JSONDB.JsonDB(new JSONConfig.Config("./Cache/DiscordEmoji", true, false))
 
-        if !FS.existsSync Path.join __dirname, "../../Cache/DiscordEmoji.json"
-            this.Storage.push "/Stats"
-            this.Storage.push "/Emoji"
-            this.Storage.push "/Packs"
+        this.Storage.push "/Stats"
+        this.Storage.push "/Emoji"
+        this.Storage.push "/Packs"
 
     getCache: (Store) ->
         try
             Data = this.Storage.getData("/")["#{Store.replace "/", ""}"]
 
-            if typeof Data != "undefined"
-                return Data
-            else
-                return false
+            if typeof Data != "undefined" then return Data else return false
         catch E
             throw E
 
