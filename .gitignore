@@ -1,5 +1,6 @@
 lib/
-test/
-index.js
+Cache/
+test.js
 .npmignore
 node_modules/
+package-lock.json
