@@ -7,23 +7,10 @@
 HTTPS = require "https"
 Cache = require "./EmojiCache"
 
-exports.queryAPI = (Endpoint, Callback, pResolve, pReject) ->
-    this.contactAPI Endpoint, (Error, Result) ->
-        if Error
-            if typeof Callback == "function"
-                Callback Error
-
-                pReject Error
-
-        if typeof Callback == "function"
-            Callback null, JSON.parse Result[0]
-
-        pResolve JSON.parse Result
-
 exports.contactAPI = (Endpoint, Callback) ->
     try
         Stores = {
-            "https://discordemoji.com/api": "/Emoji",
+            "https://discordemoji.com/api/": "/Emoji",
             "https://discordemoji.com/api/packs": "/Packs",
             "https://discordemoji.com/api/?request=stats": "/Stats"
         }
@@ -58,8 +45,8 @@ exports.contactAPI = (Endpoint, Callback) ->
                     catch E
                         throw E
 
-                    Callback Error, Data
+                    Callback Error, JSON.parse Data
         else
-            Callback null, Key
+            Callback null, JSON.parse Key
     catch E
         throw E
