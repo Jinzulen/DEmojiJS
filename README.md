@@ -16,6 +16,11 @@ npm i demojijs
 ```
 
 ## 2. Usage Examples
+Firstly, require DEmojiJS:
+```js
+const Emoji = require("demojijs");
+```
+
 - Grabbing DiscordEmoji's statistics.
 ```js
 Emoji.Statistics().then(Data => {
@@ -27,6 +32,11 @@ Emoji.Statistics().then(Data => {
 - Grabbing a random emote.
 ```js
 Emoji.randomEmoji().then(console.log).catch(console.error);
+```
+
+- Grabbing all emotes.
+```js
+Emoji.allEmoji().then(console.log).catch(console.error);
 ```
 
 ## 3. License
