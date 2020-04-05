@@ -6,10 +6,8 @@
 
 API = require "../../API/EmojiAPI"
 
-module.exports = new class getRandom
+module.exports = new class getAll
     constructor: (Callback) ->
         return new Promise (Resolve, Reject) ->
             API.contactAPI "https://discordemoji.com/api/", (Error, Data) ->
-                if Error then Reject Error
-
-                Resolve Data
+                if Error then Reject Error else Resolve Data

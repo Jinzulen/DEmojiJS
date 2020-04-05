@@ -10,6 +10,4 @@ module.exports = new class getRandom
     constructor: (Callback) ->
         return new Promise (Resolve, Reject) ->
             API.contactAPI "https://discordemoji.com/api/", (Error, Data) ->
-                if Error then Reject Error
-
-                Resolve Data[Math.floor Math.random() * Object.keys(Data).length + 1]
+                if Error then Reject Error else Resolve Data[Math.floor Math.random() * Object.keys(Data).length + 1]

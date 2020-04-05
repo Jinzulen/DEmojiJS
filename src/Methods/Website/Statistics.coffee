@@ -10,6 +10,4 @@ module.exports = new class getStatistics
     constructor: (Callback) ->
         return new Promise (Resolve, Reject) ->
             API.contactAPI "https://discordemoji.com/api/?request=stats", (Error, Data) ->
-                if Error then Reject Error
-
-                Resolve Data
+                if Error then Reject Error else Resolve Data
