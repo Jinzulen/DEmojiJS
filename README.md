@@ -57,6 +57,20 @@ Emoji.emojiByID(1).then(console.log).catch(console.error);
 Emoji.emojiByName("KappaYugi").then(console.log).catch(console.error);
 ```
 
+- Grabbing emotes by author.
+```js
+// Keep in mind that this will return an array.
+Emoji.emojiByAuthor("Jin").then(Emotes => {
+    console.log(`This user has uploaded ${Emotes.length} emotes; here are a couple of them:`);
+
+    Emotes.slice(-2).forEach(function(Emote) {
+        console.log(`${Emote.title} => ${Emote.image}`);
+    });
+}).catch(console.error);
+// This user has uploaded 90 emotes; here are a couple of them:
+// linkdab => https://discordemoji.com/assets/emoji/4955_linkdab.png
+// KappaYugi => https://discordemoji.com/assets/emoji/KappaYugi.png
+```
 
 
 ## 3. License
