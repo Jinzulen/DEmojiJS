@@ -32,6 +32,7 @@ Emoji.Statistics().then(Data => {
 // DiscordEmoji has 15660 emojis, 126446 users, 103646 favorited emojis and 17 emojis pending approval.
 
 // Grab individual statistics.
+// For reference on the currently available search parameters, visit: https://discordemoji.com/api/?request=stats
 Emoji.Statistics(["users", "faves"]).then(console.log).catch(console.error);
 // { users: 126468, faves: 103702 }
 ```
@@ -50,6 +51,13 @@ Emoji.allEmoji().then(console.log).catch(console.error);
 ```js
 Emoji.emojiByID(1).then(console.log).catch(console.error);
 ```
+
+- Grabbing an emote by title.
+```js
+Emoji.emojiByName("KappaYugi").then(console.log).catch(console.error);
+```
+
+
 
 ## 3. License
 This module is publisher under the [Apache 2.0](https://github.com/Jinzulen/DEmojiJS/blob/master/LICENSE.md) license.
