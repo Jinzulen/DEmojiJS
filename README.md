@@ -24,7 +24,7 @@ const Emoji = require("demojijs");
 ```
 
 ### 2.1 Packs
-- Grabbing all packs
+- Grabbing all packs.
 ```js
 Emoji.Packs().then(Packs => {
     console.log(`Found ${Packs.length} packs.`);
