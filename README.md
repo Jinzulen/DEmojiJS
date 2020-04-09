@@ -16,7 +16,7 @@ npm i demojijs
 ## 2. Usage Examples
 > Note #1: Please keep in mind that data in the DiscordEmoji database is case-sensitive, which means that if you were to request an emoji by name, it'd be have to be "KappaYugi" not "kappayugi" or such, same thing goes for requesting an emoji by author, etc.
 
-> Note #2: Often times, you won't be able to fetch a recently uploaded emote, this is not a fault of DEmojiJS; the data provided by DiscordEmoji themselves through their API is often outdated by a month or two, give or take.
+> Note #2: Often times, you won't be able to fetch a recently uploaded emote, this is not a fault of DEmojiJS; the data provided by DiscordEmoji themselves through their API is often outdated by a month or two, give or take. Most of the time, entire chunks of emotes are missing given the API doesn't serve **every** emote in DiscordEmoji's database.
 
 Firstly, require DEmojiJS:
 ```js
@@ -67,6 +67,15 @@ Emoji.emojiByID(1).then(console.log).catch(console.error);
 Emoji.emojiByName("KappaYugi").then(console.log).catch(console.error);
 ```
 
+- Grabbing an emote by category.
+> Keep in mind that this will return an array and that the input is not case-sensitive.
+
+> For reference on all the available categories, visit: https://discordemoji.com/api/?request=categories
+```js
+Emoji.emojiByCategory("anime").then(Emotes => console.log(`Found ${Emotes.length} emotes in this category.`)).catch(console.error);
+// Found 1090 emotes in this category.
+```
+
 - Grabbing an emote by its slug.
 ```js
 Emoji.emojiBySlug("5263_flashthink").then(Emote => {
@@ -107,7 +116,7 @@ Emoji.emojiBySlug("5263_flashthink").then(Emote => {
     ```
 
 - Grabbing emotes by license.
-> This will always return an array and the input is not case-sensitive.
+> Keep in mind that this will return an array and that the input is not case-sensitive.
 ```js
 Emoji.emojiByLicense("basic").then(Emotes => console.log(`Found ${Emotes.length} emotes.`)).catch(console.error);
 Emoji.emojiByLicense("wtfpl").then(Emotes => console.log(`Found ${Emotes.length} emotes.`)).catch(console.error);
