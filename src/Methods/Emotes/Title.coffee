@@ -19,7 +19,10 @@ module.exports = class GrabTitle
 
                 i = 0
                 while i < Object.keys(Data).length
-                    if Data[i]["title"] == Title
+                    # Get rid of case sensitivity.
+                    Data[i]["title"] = Data[i]["title"].toLowerCase()
+
+                    if Data[i]["title"] == Title.toLowerCase()
                         Resolve Data[i]
 
                     i++

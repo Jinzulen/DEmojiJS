@@ -14,9 +14,7 @@ npm i demojijs
 ```
 
 ## 2. Usage Examples
-> Note #1: Please keep in mind that data in the DiscordEmoji database is case-sensitive, which means that if you were to request an emoji by name, it'd be have to be "KappaYugi" not "kappayugi" or such, same thing goes for requesting an emoji by author, etc.
-
-> Note #2: Often times, you won't be able to fetch a recently uploaded emote, this is not a fault of DEmojiJS; the data provided by DiscordEmoji themselves through their API is often outdated by a month or two, give or take. Most of the time, entire chunks of emotes are missing given the API doesn't serve **every** emote in DiscordEmoji's database.
+> Often times, you won't be able to fetch a recently uploaded emote, this is not a fault of DEmojiJS; the data provided by DiscordEmoji themselves through their API is often outdated by a month or two, give or take. Most of the time, entire chunks of emotes are missing given the API doesn't serve **every** emote in DiscordEmoji's database.
 
 Firstly, require DEmojiJS:
 ```js
@@ -95,8 +93,9 @@ Emoji.emojiByID(1).then(console.log).catch(console.error);
 ```
 
 - Grabbing an emote by title.
+> Emote title is not case sensitive.
 ```js
-Emoji.emojiByName("KappaYugi").then(console.log).catch(console.error);
+Emoji.emojiByName("kappayugi").then(console.log).catch(console.error);
 ```
 
 - Grabbing an emote by category.
@@ -117,7 +116,7 @@ Emoji.emojiBySlug("5263_flashthink").then(Emote => {
 ```
 
 - Grabbing emotes by author.
-> Keep in mind that this will return an array.
+> Keep in mind that this will return an array; also, the uploader name is not case sensitive.
 1. Grab all of the user's emotes.
     ```js
     Emoji.emojiByAuthor("Jin").then(Emotes => {
