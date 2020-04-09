@@ -53,7 +53,7 @@ Emoji.randomEmoji(true).then(console.log).catch(console.error);
 // Grab everything.
 Emoji.allEmoji().then(console.log).catch(console.error);
 
-// Grab only animted (GIF) emotes by simply setting "true" as the sole argument.
+// Grab only animated (GIF) emotes by simply setting "true" as the sole argument.
 Emoji.allEmoji(true).then(Emotes => console.log(`${Emotes.length} animated emotes found.`)).catch(console.error);
 ```
 
@@ -65,6 +65,14 @@ Emoji.emojiByID(1).then(console.log).catch(console.error);
 - Grabbing an emote by title.
 ```js
 Emoji.emojiByName("KappaYugi").then(console.log).catch(console.error);
+```
+
+- Grabbing an emote by its slug.
+```js
+Emoji.emojiBySlug("5263_flashthink").then(Emote => {
+    console.log(`${Emote.title}, uploaded by ${Emote.submitted_by}. => ${Emote.image}`)
+}).catch(console.error);
+// flashthink, uploaded by Jin. => https://discordemoji.com/assets/emoji/5263_flashthink.png
 ```
 
 - Grabbing emotes by author.
