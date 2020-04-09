@@ -33,6 +33,7 @@ Emoji.Statistics().then(Data => {
 
 // Grab individual statistics.
 // For reference on the currently available search parameters, visit: https://discordemoji.com/api/?request=stats
+// If you only want one parameter, make sure to keep it as an array rather than a string: Statistics(["users"]) not Statistics("users")
 Emoji.Statistics(["users", "faves"]).then(console.log).catch(console.error);
 // { users: 126468, faves: 103702 }
 ```
@@ -47,6 +48,7 @@ Emoji.randomEmoji(true).then(console.log).catch(console.error);
 ```
 
 - Grabbing all emotes.
+> Keep in mind that this will return an array if you choose to return GIFs only.
 ```js
 // Grab everything.
 Emoji.allEmoji().then(console.log).catch(console.error);
@@ -95,6 +97,25 @@ Emoji.emojiByName("KappaYugi").then(console.log).catch(console.error);
     // linkwut => https://discordemoji.com/assets/emoji/5523_linkwut.gif
     // linklurk => https://discordemoji.com/assets/emoji/9136_linklurk.gif
     ```
+
+- Grabbing emotes by license.
+> This will always return an array and the input is not case-sensitive.
+```js
+Emoji.emojiByLicense("basic").then(Emotes => console.log(`Found ${Emotes.length} emotes.`)).catch(console.error);
+Emoji.emojiByLicense("wtfpl").then(Emotes => console.log(`Found ${Emotes.length} emotes.`)).catch(console.error);
+Emoji.emojiByLicense("cc by 4.0").then(Emotes => console.log(`Found ${Emotes.length} emotes.`)).catch(console.error);
+// Found 5108 emotes.
+// Found 83 emotes.
+// Found 254 emotes.
+
+// Grab animted (GIF) emotes under a certain license by setting "true" as the second argument.
+Emoji.emojiByLicense("basic", true).then(Emotes => console.log(`Found ${Emotes.length} animated emotes.`)).catch(console.error);
+Emoji.emojiByLicense("wtfpl", true).then(Emotes => console.log(`Found ${Emotes.length} animated emotes.`)).catch(console.error);
+Emoji.emojiByLicense("cc by 4.0", true).then(Emotes => console.log(`Found ${Emotes.length} animted emotes.`)).catch(console.error);
+// Found 649 animated emotes.
+// Found 12 animated emotes.
+// Found 36 animted emotes.
+```
 
 ## 3. License
 This module is publisher under the [Apache 2.0](https://github.com/Jinzulen/DEmojiJS/blob/master/LICENSE.md) license.
