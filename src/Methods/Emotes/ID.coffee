@@ -6,11 +6,11 @@
 
 API = require "../../API/EmojiAPI"
 
-module.exports = class getID
+module.exports = class GrabID
     constructor: (ID, Callback) ->
         return new Promise (Resolve, Reject) ->
             if typeof ID != "number"
-                Reject "# [DEmojiJS] ID has to be a number."
+                Reject "# [DEmojiJS] Emote ID has to be a number."
 
             API.contactAPI "https://discordemoji.com/api/", (Error, Data) ->
                 if Error then Reject Error
