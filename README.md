@@ -44,7 +44,11 @@ Emoji.randomEmoji().then(console.log).catch(console.error);
 
 - Grabbing all emotes.
 ```js
+// Grab everything.
 Emoji.allEmoji().then(console.log).catch(console.error);
+
+// Grab only animted (GIF) emotes by simply setting "true" as the sole argument.
+Emoji.allEmoji(true).then(Emotes => console.log(`${Emotes.length} animated emotes found.`)).catch(console.error);
 ```
 
 - Grabbing an emote by ID.

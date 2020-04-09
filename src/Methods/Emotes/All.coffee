@@ -1,13 +1,23 @@
 ###
 # @author Jinzulen
 # @license Apache 2.0
-# @copyright Copyright (C) 2020 Jinzulen <https://github.com/Jinzulen>
+# @copyright Copyright 2020 Khalil G. <https://github.com/Jinzulen>
 ###
 
 API = require "../../API/EmojiAPI"
 
-module.exports = new class getAll
-    constructor: (Callback) ->
+module.exports = class GrabEverything
+    constructor: (GIF, Callback) ->
         return new Promise (Resolve, Reject) ->
             API.contactAPI "https://discordemoji.com/api/", (Error, Data) ->
-                if Error then Reject Error else Resolve Data
+                if Error then Reject Error
+                
+                if GIF
+                    Store = []
+
+                    for e in Data
+                        if e["image"].includes ".gif"
+                            Store.push e
+
+                            Resolve Store
+                else Resolve Data
