@@ -7,7 +7,7 @@
 API = require "../../API/EmojiAPI"
 
 module.exports = class GrabAuthor
-    constructor: (Author, Callback) ->
+    constructor: (Author, GIF, Callback) ->
         return new Promise (Resolve, Reject) ->
             if typeof Author != "string"
                 Reject "# [DEmojiJS] Emote author has to be a string."
@@ -16,9 +16,10 @@ module.exports = class GrabAuthor
                 if Error then Reject Error
 
                 Store = []
+                if GIF then Type = ".gif" else Type = "."
 
                 for e in Data
-                    if e["submitted_by"] == Author
+                    if e["submitted_by"] == Author && e["image"].includes Type
                         Store.push e
 
                         Resolve Store

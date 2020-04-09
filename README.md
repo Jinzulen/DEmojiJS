@@ -58,20 +58,35 @@ Emoji.emojiByName("KappaYugi").then(console.log).catch(console.error);
 ```
 
 - Grabbing emotes by author.
-```js
-// Keep in mind that this will return an array.
-Emoji.emojiByAuthor("Jin").then(Emotes => {
-    console.log(`This user has uploaded ${Emotes.length} emotes; here are a couple of them:`);
+> Keep in mind that this will return an array.
+1. Grab all of the user's emotes.
+    ```js
+    Emoji.emojiByAuthor("Jin").then(Emotes => {
+        console.log(`This user has uploaded ${Emotes.length} emotes; here are a couple of them:`);
 
-    Emotes.slice(-2).forEach(function(Emote) {
-        console.log(`${Emote.title} => ${Emote.image}`);
-    });
-}).catch(console.error);
-// This user has uploaded 90 emotes; here are a couple of them:
-// linkdab => https://discordemoji.com/assets/emoji/4955_linkdab.png
-// KappaYugi => https://discordemoji.com/assets/emoji/KappaYugi.png
-```
+        Emotes.slice(-2).forEach(function(Emote) {
+            console.log(`${Emote.title} => ${Emote.image}`);
+        });
+    }).catch(console.error);
+    // This user has uploaded 90 emotes; here are a couple of them:
+    // linkdab => https://discordemoji.com/assets/emoji/4955_linkdab.png
+    // KappaYugi => https://discordemoji.com/assets/emoji/KappaYugi.png
+    ```
 
+2. Grab all of the user's animated (GIF) emotes.
+    ```js
+    // Simply set "true" as the second argument.
+    Emoji.emojiByAuthor("Jin", true).then(Emotes => {
+        console.log(`This user has uploaded ${Emotes.length} animated emotes; for example:`);
+
+        Emotes.slice(-2).forEach(function(Emote) {
+            console.log(`${Emote.title} => ${Emote.image}`);
+        });
+    }).catch(console.error);
+    // This user has uploaded 7 animated emotes; for example:
+    // linkwut => https://discordemoji.com/assets/emoji/5523_linkwut.gif
+    // linklurk => https://discordemoji.com/assets/emoji/9136_linklurk.gif
+    ```
 
 ## 3. License
 This module is publisher under the [Apache 2.0](https://github.com/Jinzulen/DEmojiJS/blob/master/LICENSE.md) license.
