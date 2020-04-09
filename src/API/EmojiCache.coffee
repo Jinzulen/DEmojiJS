@@ -1,7 +1,7 @@
 ###
 # @author Jinzulen
 # @license Apache 2.0
-# @copyright Copyright (C) 2020 Khalil G. <https://github.com/Jinzulen>
+# @copyright Copyright 2020 Khalil G. <https://github.com/Jinzulen>
 ###
 
 FS         = require "fs"
@@ -16,6 +16,7 @@ module.exports = new class EmojiCache
         this.Storage.push "/Stats"
         this.Storage.push "/Emoji"
         this.Storage.push "/Packs"
+        this.Storage.push "/Categories"
 
     getCache: (Store) ->
         try
