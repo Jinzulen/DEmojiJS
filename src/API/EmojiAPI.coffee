@@ -7,12 +7,19 @@
 HTTPS = require "https"
 Cache = require "./EmojiCache"
 
+exports.GrabCategories = () ->
+    if !Cache.getCache "/Categories"
+        this.contactAPI "https://discordemoji.com/api/?request=categories", (Error, Data) ->
+            if Error
+                throw Error
+
 exports.contactAPI = (Endpoint, Callback) ->
     try
         Stores = {
             "https://discordemoji.com/api/": "/Emoji",
             "https://discordemoji.com/api/packs": "/Packs",
-            "https://discordemoji.com/api/?request=stats": "/Stats"
+            "https://discordemoji.com/api/?request=stats": "/Stats",
+            "https://discordemoji.com/api/?request=categories": "/Categories"
         }
 
         Key = Cache.getCache Stores[Endpoint]
