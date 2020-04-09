@@ -1,26 +1,30 @@
 {
   "name": "demojijs",
-  "version": "1.2.0",
-  "description": "DEmojiJS is a lightweight, simple NodeJS wrapper around the DiscordEmoji API.",
-  "main": "index.js",
+  "version": "1.3.1",
+  "description": "Extensively powerful API client for Discord Emoji.",
+  "main": "lib/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prepublish": "npm run compile",
+    "compile": "coffee --compile --output lib/ src/"
   },
   "keywords": [
+    "bot",
+    "emoji",
+    "demoji",
     "discord",
-    "emojis",
-    "discordemoji",
-    "discordemoji.com",
-    "bots"
+    "discordemoji"
   ],
   "author": "Jinzulen",
-  "license": "ISC",
+  "license": "Apache-2.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/Jinzulen/DEmojiJS.git"
   },
+  "bugs": {
+    "url": "https://github.com/Jinzulen/DEmojiJS/issues"
+  },
+  "homepage": "https://github.com/Jinzulen/DEmojiJS",
   "dependencies": {
-    "node-file-cache": "^1.0.2",
-    "underscore": "^1.9.1"
+    "node-json-db": "^1.0.3"
   }
 }

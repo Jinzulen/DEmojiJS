@@ -1,4 +1,7 @@
+*.js
+lib/
+Cache/
 test.js
-demoji-cache
+.npmignore
 node_modules/
 package-lock.json

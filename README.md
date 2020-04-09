@@ -1,165 +1,170 @@
-DEmojiJS is a lightweight, simple NodeJS wrapper around the DiscordEmoji API.
+<img align="right" width="100" height="100" src="https://i.imgur.com/Iphriti.gif">
 
-You can quickly and easily install the library using NPM, via the following command: `npm i demojijs`. - Alternatively, you can just download the ZIP from here and require it in your project.
+# DEmojiJS
+### DiscordEmoji's number one API client for Node-based applications.
 
+![CodeFactor](https://www.codefactor.io/repository/github/jinzulen/demojijs/badge/master?style=for-the-badge) ![NPM Version](https://img.shields.io/npm/v/demojijs?style=for-the-badge) ![NPM Weekly Downloads](https://img.shields.io/npm/dw/demojijs.svg?style=for-the-badge)
 
-[![https://nodei.co/npm/demojijs.png](https://nodei.co/npm/demojijs.png)](https://www.npmjs.com/package/demojijs)
+## 1. Installation
+DEmojiJS is trusted by hundreds of users from all over to power their interactions with the DiscordEmoji API. Why? It's **faster** thanks to its caching features, its wide array of **versatile search** functionalities and overall **stable** performance. Not convinced?
 
-## Features
-- DiscordEmoji API Features:
-1. You can fetch the full extent of DiscordEmoji's statistics, as published by their API, including:
-    - Number of users in their database.
-    - Number of emojis pending approval.
-    - Number of emojis in their database.
-    - Number of user favorites in their database.
-    
-2. You can fetch information on a particular emoji, as indicated by their API, the information includes:
-    - Emoji ID
-    - Emoji Name
-    - Emoji Slug
-    - Emoji Image
-    - Emoji Width
-    - Emoji Height
-    - Emoji Source
-    - Emoji License
-    - Emoji Category
-    - Emoji File Size
-    - Emoji Favorites
-    - Emoji Submitter
-    - Emoji Description
-    
-3. You can fetch the full list of available emoji categories, as indicated by their API.
-
-- Wrapper Features
-1. **Caching:** DEmojiJS makes use of local, file cache to lighten the load on DiscordEmoji's API and improve response time, the cache lifetime is by default set to **12 hours**.
-
-## Guides:
-> Please keep in mind that data in the DiscordEmoji database is case-sensitive, which means that if you were to request an emoji by name, it'd be have to be "KappaYugi" not "kappayugi" or such, same thing goes for requesting an emoji by author, etc...
-
-- First, call DEmojiJS using:
-```js
-const DEmojiJS = require('demojijs');
+See for yourself:
+```
+npm i demojijs
 ```
 
-1. Fetching emojis:
-- We have quite a number of ways to fetch emojis here, but let's get this thing out of the way first, we can get a random emoji using:
+## 2. Usage Examples
+> Note #1: Please keep in mind that data in the DiscordEmoji database is case-sensitive, which means that if you were to request an emoji by name, it'd be have to be "KappaYugi" not "kappayugi" or such, same thing goes for requesting an emoji by author, etc.
+
+> Note #2: Often times, you won't be able to fetch a recently uploaded emote, this is not a fault of DEmojiJS; the data provided by DiscordEmoji themselves through their API is often outdated by a month or two, give or take. Most of the time, entire chunks of emotes are missing given the API doesn't serve **every** emote in DiscordEmoji's database.
+
+Firstly, require DEmojiJS:
 ```js
-/**
- * Emoji here will return a JSON object carrying the following information:
- * * id
- * * title
- * * slug
- * * image
- * * description
- * * category
- * * license
- * * source
- * * faves
- * * submitted_by
- * * width
- * * height
- * * filesize
- */
-DEmojiJS.randomEmoji().then(Emoji => {
-    console.log(`${Emoji.title} (${Emoji.image}), submitted by: ${Emoji.submitted_by}.`);
-}).catch(console.error);
+const Emoji = require("demojijs");
 ```
 
-- Fetching all of the available emojis
-> If the data had been cached, then it will pull from cache, if not then it will make an API request, cache then pull from cache, pretty straightforward me thinks, neh?
+### 2.1 Packs
+- Grabbing all packs.
 ```js
-DEmojiJS.allEmoji().then(Emotes => {
-      console.log(Emotes);
+Emoji.Packs().then(Packs => {
+    console.log(`Found ${Packs.length} packs.`);
 
-      // Implement your own logic here to deal with the data as you wish.
-}).catch(console.error);
-```
-
-- Fetching an emoji by ID
-```js
-DEmojiJS.emojiByID(5054).then(Emoji => {
-    console.log(`${Emoji.title} (${Emoji.image}), submitted by: ${Emoji.submitted_by}.`);
-}).catch(console.error);
-// {"id":5054,"title":"KappaYugi","slug":"KappaYugi","image":"https:\/\/discordemoji.com\/assets\/emoji\/KappaYugi.png","description":"KappaYugi is a emoji that you can use on discord or slack. View more info at https:\/\/discordemoji.com\/emoji\/KappaYugi","category":3,"license":"1","source":"","faves":8,"submitted_by":"Jin","width":0,"height":0,"filesize":0}
-```
-
-- Fetching an emoji by name
-```js
-DEmojiJS.emojiByName('KappaYugi').then(Emoji => {
-    console.log(`${Emoji.title} (${Emoji.image}), submitted by: ${Emoji.submitted_by}.`);
-}).then(console.error);
-// {"id":5054,"title":"KappaYugi","slug":"KappaYugi","image":"https:\/\/discordemoji.com\/assets\/emoji\/KappaYugi.png","description":"KappaYugi is a emoji that you can use on discord or slack. View more info at https:\/\/discordemoji.com\/emoji\/KappaYugi","category":3,"license":"1","source":"","faves":8,"submitted_by":"Jin","width":0,"height":0,"filesize":0}
-```
-
-- Fetching emojis by author/person who submitted them:
-```js
-DEmojiJS.emojiByAuthor('Kohai').then(Emotes => {
-    Emotes.forEach(function(Element) {
-        console.log(`- ${Element.title} (${Element.image}) by ${Element.submitted_by}`);
+    Packs.forEach(function(Pack) {
+        console.log(`- #${Pack.id} ${Pack.name} has ${Pack.amount} emotes and can be downloaded here: ${Pack.download}`);
     });
 }).catch(console.error);
-
-//- MadmanShrug (https://discordemoji.com/assets/emoji/6461_MadmanShrug.png) by Kohai
-//- Telegram (https://discordemoji.com/assets/emoji/9297_Telegram.png) by Kohai
-//- hedhurt (https://discordemoji.com/assets/emoji/6700_hedhurt.png) by Kohai
-//- blobwitchtea (https://discordemoji.com/assets/emoji/9643_blobwitchtea.png) by Kohai
-//- eymario (https://discordemoji.com/assets/emoji/5501_eymario.png) by Kohai
-// [... 496 more items]
+// Found 8 packs.
+// - #9 Pensive Emojis has 8 emotes and can be downloaded here: https://discordemoji.com/assets/packs/download/pensive-pack.zip
+// - #8 Original Remixes #1 has 12 emotes and can be downloaded here: https://discordemoji.com/assets/packs/download/original-remixes-1.zip
+// - #7 Blob Pack #1 has 16 emotes and can be downloaded here: https://discordemoji.com/assets/packs/download/blob-pack-1.zip
+// - #6 100 Remixes has 12 emotes and can be downloaded here: https://discordemoji.com/assets/packs/download/100-remixes.zip- #5 PUBG Pack has 10 emotes and can be downloaded here: https://discordemoji.com/assets/packs/download/pubg-pack.zip
+// - #4 Minecraft Pack has 16 emotes and can be downloaded here: https://discordemoji.com/assets/packs/download/minecraft-pack.zip
+// - #3 Pepe Pack #1 has 16 emotes and can be downloaded here: https://discordemoji.com/assets/packs/download/pepe-pack-1.zip
+// - #2 Anime Pack #1 has 16 emotes and can be downloaded here: https://discordemoji.com/assets/packs/download/anime-pack-1.zip
 ```
 
-- Fetching emojis by license
-> License input here is not case-sensitive.
+- Grabbing a pack by ID, title or slug.
+> Input is not case-sensitive.
 ```js
-DEmojiJS.emojiByLicense('basic').then(Emotes => {
-      console.log(`- Found ${Emotes.length} emotes using this license.`);
-}).catch(console.error);
-// - Found 4772 emotes using this license.
-
-DEmojiJS.emojiByLicense('cc by 4.0').then(Emotes => {
-      console.log(`- Found ${Emotes.length} emotes using this license.`);
-}).catch(console.error);
-// - Found 251 emotes using this license.
-
-DEmojiJS.emojiByLicense('wtfpl').then(Emotes => {
-      console.log(`- Found ${Emotes.length} emotes using this license.`);
-}).catch(console.error);
-//- Found 72 emotes using this license.
+Emoji.Packs(4).then(console.log).catch(console.error);
+Emoji.Packs("minecraft pack").then(console.log).catch(console.error);
+Emoji.Packs("minecraft-pack").then(console.log).catch(console.error);
 ```
 
-2. Fetching Statistics
+### 2.2 Emotes & Stats
+- Grabbing DiscordEmoji's statistics.
 ```js
-DEmojiJS.Statistics().then(Stats => {
-      console.log(Stats.emoji);
-      // returns: 5660
-
-      console.log(Stats.users);
-      // return: 34701
-
-      console.log(Stats.faves);
-      // returns: 30051
-
-      console.log(Stats.pending_approvals);
-      // returns: 1
-
-      console.log(Stats);
-      // returns: { emoji: 5660, users: 34701, faves: 30051, pending_approvals: 1 }
+// Grab all statistics.
+Emoji.Statistics().then(Data => {
+    console.log(`DiscordEmoji has ${Data.emoji} emojis, ${Data.users} users, ${Data.faves} favorited emojis and ${Data.pending_approvals} emojis pending approval.`);
 }).catch(console.error);
+// DiscordEmoji has 15660 emojis, 126446 users, 103646 favorited emojis and 17 emojis pending approval.
+
+// Grab individual statistics.
+// For reference on the currently available search parameters, visit: https://discordemoji.com/api/?request=stats
+// If you only want one parameter, make sure to keep it as an array rather than a string: Statistics(["users"]) not Statistics("users")
+Emoji.Statistics(["users", "faves"]).then(console.log).catch(console.error);
+// { users: 126468, faves: 103702 }
 ```
 
-## Dependencies
-- [underscore](https://www.npmjs.com/package/underscore)
-- [node-file-cache](https://www.npmjs.com/package/node-file-cache)
+- Grabbing a random emote.
+```js
+// Grab a random emote.
+Emoji.randomEmoji().then(console.log).catch(console.error);
 
-## Contributors
-- Jinzulen (Jin#8303) - Making this.
-- Coffee-chan - Keeping me alive and focused. <3
+// Grab a random animated (GIF) emote by simply setting "true" as the sole argument.
+Emoji.randomEmoji(true).then(console.log).catch(console.error);
 
-## Useful Links
-- [DiscordEmoji](https://discordemoji.com/)
-- [DiscordEmoji Server](https://discord.gg/Fh6q2Fw)
-- [DEmojiJS NPM](https://www.npmjs.com/package/demojijs)
+// Grab a random emote from a specific category by simply setting the name of the category as the sole argument.
+Emoji.randomEmoji("anime").then(console.log).catch(console.error);
+```
 
-## Developer Note
-- Callbacks are being problematic, please avoid using them right now and instead go only for promises.
-- This wrapper is released under the ISC license, as such, you can do with it what you want so long as credits remain.
-- If you encounter an issue with it, then feel free to open an issue and I'll tend to it and see what can be done about it, same thing goes for feature requests.
+- Grabbing all emotes.
+> Keep in mind that this will return an array if you choose to return GIFs only.
+```js
+// Grab everything.
+Emoji.allEmoji().then(console.log).catch(console.error);
+
+// Grab only animated (GIF) emotes by simply setting "true" as the sole argument.
+Emoji.allEmoji(true).then(Emotes => console.log(`${Emotes.length} animated emotes found.`)).catch(console.error);
+```
+
+- Grabbing an emote by ID.
+```js
+Emoji.emojiByID(1).then(console.log).catch(console.error);
+```
+
+- Grabbing an emote by title.
+```js
+Emoji.emojiByName("KappaYugi").then(console.log).catch(console.error);
+```
+
+- Grabbing an emote by category.
+> Keep in mind that this will return an array and that the input is not case-sensitive.
+
+> For reference on all the available categories, visit: https://discordemoji.com/api/?request=categories
+```js
+Emoji.emojiByCategory("anime").then(Emotes => console.log(`Found ${Emotes.length} emotes in this category.`)).catch(console.error);
+// Found 1090 emotes in this category.
+```
+
+- Grabbing an emote by its slug.
+```js
+Emoji.emojiBySlug("5263_flashthink").then(Emote => {
+    console.log(`${Emote.title}, uploaded by ${Emote.submitted_by}. => ${Emote.image}`)
+}).catch(console.error);
+// flashthink, uploaded by Jin. => https://discordemoji.com/assets/emoji/5263_flashthink.png
+```
+
+- Grabbing emotes by author.
+> Keep in mind that this will return an array.
+1. Grab all of the user's emotes.
+    ```js
+    Emoji.emojiByAuthor("Jin").then(Emotes => {
+        console.log(`This user has uploaded ${Emotes.length} emotes; here are a couple of them:`);
+
+        Emotes.slice(-2).forEach(function(Emote) {
+            console.log(`${Emote.title} => ${Emote.image}`);
+        });
+    }).catch(console.error);
+    // This user has uploaded 90 emotes; here are a couple of them:
+    // linkdab => https://discordemoji.com/assets/emoji/4955_linkdab.png
+    // KappaYugi => https://discordemoji.com/assets/emoji/KappaYugi.png
+    ```
+
+2. Grab all of the user's animated (GIF) emotes.
+    ```js
+    // Simply set "true" as the second argument.
+    Emoji.emojiByAuthor("Jin", true).then(Emotes => {
+        console.log(`This user has uploaded ${Emotes.length} animated emotes; for example:`);
+
+        Emotes.slice(-2).forEach(function(Emote) {
+            console.log(`${Emote.title} => ${Emote.image}`);
+        });
+    }).catch(console.error);
+    // This user has uploaded 7 animated emotes; for example:
+    // linkwut => https://discordemoji.com/assets/emoji/5523_linkwut.gif
+    // linklurk => https://discordemoji.com/assets/emoji/9136_linklurk.gif
+    ```
+
+- Grabbing emotes by license.
+> Keep in mind that this will return an array and that the input is not case-sensitive.
+```js
+Emoji.emojiByLicense("basic").then(Emotes => console.log(`Found ${Emotes.length} emotes.`)).catch(console.error);
+Emoji.emojiByLicense("wtfpl").then(Emotes => console.log(`Found ${Emotes.length} emotes.`)).catch(console.error);
+Emoji.emojiByLicense("cc by 4.0").then(Emotes => console.log(`Found ${Emotes.length} emotes.`)).catch(console.error);
+// Found 5108 emotes.
+// Found 83 emotes.
+// Found 254 emotes.
+
+// Grab animted (GIF) emotes under a certain license by setting "true" as the second argument.
+Emoji.emojiByLicense("basic", true).then(Emotes => console.log(`Found ${Emotes.length} animated emotes.`)).catch(console.error);
+Emoji.emojiByLicense("wtfpl", true).then(Emotes => console.log(`Found ${Emotes.length} animated emotes.`)).catch(console.error);
+Emoji.emojiByLicense("cc by 4.0", true).then(Emotes => console.log(`Found ${Emotes.length} animted emotes.`)).catch(console.error);
+// Found 649 animated emotes.
+// Found 12 animated emotes.
+// Found 36 animted emotes.
+```
+
+## 3. License
+This module is publisher under the [Apache 2.0](https://github.com/Jinzulen/DEmojiJS/blob/master/LICENSE.md) license.
