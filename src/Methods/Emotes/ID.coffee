@@ -9,6 +9,8 @@ API = require "../../API/EmojiAPI"
 module.exports = class GrabID
     constructor: (ID, Callback) ->
         return new Promise (Resolve, Reject) ->
+            if !ID then Reject "# [DEmojiJS] Please enter an emote ID to continue."
+            
             if typeof ID != "number"
                 Reject "# [DEmojiJS] Emote ID has to be a number."
 

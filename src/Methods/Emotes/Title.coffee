@@ -9,6 +9,8 @@ API = require "../../API/EmojiAPI"
 module.exports = class GrabTitle
     constructor: (Title, Callback) ->
         return new Promise (Resolve, Reject) ->
+            if !Title then Reject "# [DEmojiJS] Please enter an emote title to continue."
+            
             if typeof Title != "string"
                 Reject "# [DEmojiJS] Emote title has to be a string."
 
