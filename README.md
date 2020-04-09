@@ -39,7 +39,11 @@ Emoji.Statistics(["users", "faves"]).then(console.log).catch(console.error);
 
 - Grabbing a random emote.
 ```js
+// Grab a random emote.
 Emoji.randomEmoji().then(console.log).catch(console.error);
+
+// Grab a random animated (GIF) emote by simply setting "true" as the sole argument.
+Emoji.randomEmoji(true).then(console.log).catch(console.error);
 ```
 
 - Grabbing all emotes.
