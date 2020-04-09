@@ -7,19 +7,32 @@
 API = require "../../API/EmojiAPI"
 
 module.exports = class GrabRandom
-    constructor: (GIF, Callback) ->
+    constructor: (Input, Callback) ->
         return new Promise (Resolve, Reject) ->
             API.contactAPI "https://discordemoji.com/api/", (Error, Data) ->
                 if Error then Reject Error
 
-                Index = Math.floor Math.random() * Object.keys(Data).length + 1
-                
-                if GIF
+                if Input
+                    Cats  = []
                     Store = []
 
                     for e in Data
-                        if e["image"].includes ".gif"
-                            Store.push e
+                        if typeof Input != "boolean"
+                            API.contactAPI "https://discordemoji.com/api/?request=categories", (Error, Categories) ->
+                                if Error
+                                    throw Error
+
+                                # Store all categories in lowercase.
+                                for c in Object.keys Categories
+                                    Cats[c] = Categories[c].toLowerCase()
+
+                            if Cats[e["category"]] == Input.toLowerCase()
+                                Store.push e
+
+                        if typeof Input == "boolean"
+                            if e["image"].includes ".gif"
+                                Store.push e
 
                     Resolve Store[Math.floor Math.random() * Store.length + 1]
-                else Resolve Data[Math.floor Math.random() * Object.keys(Data).length + 1]
+                else
+                    Resolve Data[Math.floor Math.random() * Object.keys(Data).length + 1]

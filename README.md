@@ -45,6 +45,9 @@ Emoji.randomEmoji().then(console.log).catch(console.error);
 
 // Grab a random animated (GIF) emote by simply setting "true" as the sole argument.
 Emoji.randomEmoji(true).then(console.log).catch(console.error);
+
+// Grab a random emote from a specific category by simply setting the name of the category as the sole argument.
+Emoji.randomEmoji("anime").then(console.log).catch(console.error);
 ```
 
 - Grabbing all emotes.
