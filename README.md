@@ -25,10 +25,15 @@ const Emoji = require("demojijs");
 
 - Grabbing DiscordEmoji's statistics.
 ```js
+// Grab all statistics.
 Emoji.Statistics().then(Data => {
     console.log(`DiscordEmoji has ${Data.emoji} emojis, ${Data.users} users, ${Data.faves} favorited emojis and ${Data.pending_approvals} emojis pending approval.`);
 }).catch(console.error);
 // DiscordEmoji has 15660 emojis, 126446 users, 103646 favorited emojis and 17 emojis pending approval.
+
+// Grab individual statistics.
+Emoji.Statistics(["users", "faves"]).then(console.log).catch(console.error);
+// { users: 126468, faves: 103702 }
 ```
 
 - Grabbing a random emote.
