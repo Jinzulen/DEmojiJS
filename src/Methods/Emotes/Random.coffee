@@ -29,7 +29,7 @@ module.exports = class GrabRandom
                             if Cats[e["category"]] == Input.toLowerCase()
                                 Store.push e
 
-                        if typeof Input == "boolean"
+                        if typeof Input == "boolean" && Input != false
                             if e["image"].includes ".gif"
                                 Store.push e
 
