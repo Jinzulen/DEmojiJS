@@ -23,6 +23,35 @@ Firstly, require DEmojiJS:
 const Emoji = require("demojijs");
 ```
 
+### 2.1 Packs
+- Grabbing all packs
+```js
+Emoji.Packs().then(Packs => {
+    console.log(`Found ${Packs.length} packs.`);
+
+    Packs.forEach(function(Pack) {
+        console.log(`- #${Pack.id} ${Pack.name} has ${Pack.amount} emotes and can be downloaded here: ${Pack.download}`);
+    });
+}).catch(console.error);
+// Found 8 packs.
+// - #9 Pensive Emojis has 8 emotes and can be downloaded here: https://discordemoji.com/assets/packs/download/pensive-pack.zip
+// - #8 Original Remixes #1 has 12 emotes and can be downloaded here: https://discordemoji.com/assets/packs/download/original-remixes-1.zip
+// - #7 Blob Pack #1 has 16 emotes and can be downloaded here: https://discordemoji.com/assets/packs/download/blob-pack-1.zip
+// - #6 100 Remixes has 12 emotes and can be downloaded here: https://discordemoji.com/assets/packs/download/100-remixes.zip- #5 PUBG Pack has 10 emotes and can be downloaded here: https://discordemoji.com/assets/packs/download/pubg-pack.zip
+// - #4 Minecraft Pack has 16 emotes and can be downloaded here: https://discordemoji.com/assets/packs/download/minecraft-pack.zip
+// - #3 Pepe Pack #1 has 16 emotes and can be downloaded here: https://discordemoji.com/assets/packs/download/pepe-pack-1.zip
+// - #2 Anime Pack #1 has 16 emotes and can be downloaded here: https://discordemoji.com/assets/packs/download/anime-pack-1.zip
+```
+
+- Grabbing a pack by ID, title or slug.
+> Input is not case-sensitive.
+```js
+Emoji.Packs(4).then(console.log).catch(console.error);
+Emoji.Packs("minecraft pack").then(console.log).catch(console.error);
+Emoji.Packs("minecraft-pack").then(console.log).catch(console.error);
+```
+
+### 2.2 Emotes & Stats
 - Grabbing DiscordEmoji's statistics.
 ```js
 // Grab all statistics.
