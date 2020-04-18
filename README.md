@@ -9,9 +9,21 @@
 DEmojiJS is trusted by hundreds of users from all over to power their interactions with the DiscordEmoji API. Why? It's **faster** thanks to its caching features, its wide array of **versatile search** functionalities and overall **stable** performance. Not convinced?
 
 See for yourself:
+
+*If you are running a version older than **v1.3.4**, please update as soon as possible.*
 ```
-npm i demojijs
+npm i demojijs@latest
 ```
+
+## 1.2 Nodemon
+It is possible for Nodemon users to encounter problems when adding DEmojiJS to their project, this is due to the wrapper's caching mechanism, which initializes a JSON cache store on startup, this act causes a never-ending loop where Nodemon keeps detecting a ".json" change, thereby restarting the app, which in turn causes the cache handler to yet again initialize the store, etc...
+
+This can be easily avoided by checking that you are running the latest DEmojiJS version *(look at the NPM version badge above)* and then simply adding `DiscordEmoji.json` to the list of ignored files in the Nodemon config, like so:
+```json
+"ignore": "DiscordEmoji.json"
+```
+
+Please refer yourself to [this section](https://github.com/remy/nodemon#config-files) of the public Nodemon repository if you don't know how to configure Nodemon.
 
 ## 2. Usage Examples
 > Often times, you won't be able to fetch a recently uploaded emote, this is not a fault of DEmojiJS; the data provided by DiscordEmoji themselves through their API is often outdated by a month or two, give or take. Most of the time, entire chunks of emotes are missing given the API doesn't serve **every** emote in DiscordEmoji's database.
