@@ -14,7 +14,7 @@ module.exports = class GrabID
             if typeof ID != "number"
                 Reject "# [DEmojiJS] Emote ID has to be a number."
 
-            API.contactAPI "https://discordemoji.com/api/", (Error, Data) ->
+            API.contactAPI "https://emoji.gg/api/", (Error, Data) ->
                 if Error then Reject Error
 
                 i = 0

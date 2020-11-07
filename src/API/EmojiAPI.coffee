@@ -9,17 +9,17 @@ Cache = require "./EmojiCache"
 
 exports.GrabCategories = () ->
     if !Cache.getCache "/Categories"
-        this.contactAPI "https://discordemoji.com/api/?request=categories", (Error, Data) ->
+        this.contactAPI "https://emoji.gg/api/?request=categories", (Error, Data) ->
             if Error
                 throw Error
 
 exports.contactAPI = (Endpoint, Callback) ->
     try
         Stores = {
-            "https://discordemoji.com/api/": "/Emoji",
-            "https://discordemoji.com/api/packs": "/Packs",
-            "https://discordemoji.com/api/?request=stats": "/Stats",
-            "https://discordemoji.com/api/?request=categories": "/Categories"
+            "https://emoji.gg/api/": "/Emoji",
+            "https://emoji.gg/api/packs": "/Packs",
+            "https://emoji.gg/api/?request=stats": "/Stats",
+            "https://emoji.gg/api/?request=categories": "/Categories"
         }
 
         Key = Cache.getCache Stores[Endpoint]

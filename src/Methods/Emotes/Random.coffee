@@ -9,7 +9,7 @@ API = require "../../API/EmojiAPI"
 module.exports = class GrabRandom
     constructor: (Input, Callback) ->
         return new Promise (Resolve, Reject) ->
-            API.contactAPI "https://discordemoji.com/api/", (Error, Data) ->
+            API.contactAPI "https://emoji.gg/api/", (Error, Data) ->
                 if Error then Reject Error
 
                 if Input
@@ -18,7 +18,7 @@ module.exports = class GrabRandom
 
                     for e in Data
                         if typeof Input != "boolean"
-                            API.contactAPI "https://discordemoji.com/api/?request=categories", (Error, Categories) ->
+                            API.contactAPI "https://emoji.gg/api/?request=categories", (Error, Categories) ->
                                 if Error
                                     throw Error
 

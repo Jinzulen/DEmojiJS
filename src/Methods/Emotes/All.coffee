@@ -9,7 +9,7 @@ API = require "../../API/EmojiAPI"
 module.exports = class GrabEverything
     constructor: (GIF, Callback) ->
         return new Promise (Resolve, Reject) ->
-            API.contactAPI "https://discordemoji.com/api/", (Error, Data) ->
+            API.contactAPI "https://emoji.gg/api/", (Error, Data) ->
                 if Error then Reject Error
                 
                 if GIF

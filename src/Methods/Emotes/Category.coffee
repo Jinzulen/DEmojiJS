@@ -19,11 +19,11 @@ module.exports = class GrabCategory
             Store = []
 
             # Grab emotes.
-            API.contactAPI "https://discordemoji.com/api/", (Error, Emotes) ->
+            API.contactAPI "https://emoji.gg/api/", (Error, Emotes) ->
                 if Error then Reject Error
 
                 # Grab categories.
-                API.contactAPI "https://discordemoji.com/api/?request=categories", (Error, Categories) ->
+                API.contactAPI "https://emoji.gg/api/?request=categories", (Error, Categories) ->
                     if Error then Reject Error
 
                     # Store all categories in lowercase.

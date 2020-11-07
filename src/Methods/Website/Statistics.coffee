@@ -9,7 +9,7 @@ API = require "../../API/EmojiAPI"
 module.exports = class GrabStatistics
     constructor: (Options, Callback) ->
         return new Promise (Resolve, Reject) ->
-            API.contactAPI "https://discordemoji.com/api/?request=stats", (Error, Data) ->
+            API.contactAPI "https://emoji.gg/api/?request=stats", (Error, Data) ->
                 if Error then Reject Error
                 
                 if Options.length >= 1

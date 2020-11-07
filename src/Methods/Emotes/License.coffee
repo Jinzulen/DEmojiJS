@@ -15,7 +15,7 @@ module.exports = class GrabLicense
             if typeof License != "string"
                 Reject "# [DEmojiJS] Emote license has to be a string."
 
-            API.contactAPI "https://discordemoji.com/api/", (Error, Data) ->
+            API.contactAPI "https://emoji.gg/api/", (Error, Data) ->
                 if Error then Reject Error
 
                 Store = []

@@ -14,7 +14,7 @@ module.exports = class GrabTitle
             if typeof Title != "string"
                 Reject "# [DEmojiJS] Emote title has to be a string."
 
-            API.contactAPI "https://discordemoji.com/api/", (Error, Data) ->
+            API.contactAPI "https://emoji.gg/api/", (Error, Data) ->
                 if Error then Reject Error
 
                 i = 0

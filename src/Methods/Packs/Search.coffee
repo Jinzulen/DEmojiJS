@@ -9,7 +9,7 @@ API = require "../../API/EmojiAPI"
 module.exports = class SearchPacks
     constructor: (ID, Callback) ->
         return new Promise (Resolve, Reject) ->
-            API.contactAPI "https://discordemoji.com/api/packs", (Error, Packs) ->
+            API.contactAPI "https://emoji.gg/api/packs", (Error, Packs) ->
                 if Error then Reject Error
 
                 if ID
