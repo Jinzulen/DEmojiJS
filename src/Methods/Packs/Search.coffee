@@ -23,7 +23,7 @@ module.exports = class SearchPacks
                         Store["slug"]     = p["slug"]
                         Store["image"]    = p["image"]
                         Store["amount"]   = p["amount"]
-                        Store["download"] = p["download"]
+                        Store["download"] = "https://https://emoji.gg/pack/" + p["slug"]
                         Store["name"]     = p["name"].toLowerCase()
 
                         # Return results.
