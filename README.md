@@ -3,7 +3,7 @@
 # DEmojiJS
 ### DiscordEmoji's number one API client for Node-based applications.
 
-![CodeFactor](https://www.codefactor.io/repository/github/jinzulen/demojijs/badge/master?style=for-the-badge) ![NPM Version](https://img.shields.io/npm/v/demojijs?style=for-the-badge) ![NPM Weekly Downloads](https://img.shields.io/npm/dw/demojijs.svg?style=for-the-badge)
+![CodeFactor](https://www.codefactor.io/repository/github/jinzulen/demojijs/badge/master?style=for-the-badge) ![Snyk Security Analysis](https://img.shields.io/snyk/vulnerabilities/github/Jinzulen/DEmojiJS?style=for-the-badge) ![NPM Version](https://img.shields.io/npm/v/demojijs?style=for-the-badge) ![NPM Monthly Downloads](https://img.shields.io/npm/dm/demojijs.svg?style=for-the-badge)
 
 ## 1. Installation
 DEmojiJS is trusted by hundreds of users from all over to power their interactions with the DiscordEmoji API. Why? It's **faster** thanks to its caching features, its wide array of **versatile search** functionalities and overall **stable** performance. Not convinced?
